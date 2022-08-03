@@ -1,0 +1,27 @@
+{
+  "name": "react_study",
+  "version": "1.0.0",
+  "description": "---\r - 웹 사이트에 React 추가\r [html 코드](test\\01index.html) / [js 코드](test\\01like_button.js)",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nack1400/react_study.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nack1400/react_study/issues"
+  },
+  "homepage": "https://github.com/nack1400/react_study#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2"
+  }
+}
