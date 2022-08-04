@@ -6,7 +6,7 @@
 [html 코드](test\01index.html) / [js 코드](test\01like_button.js) / [JSX 테스트](test\01test.html)
 
 #### 2. 새로운 React 앱 만들기
-*리액트 싱글 페이지 앱 my-app 생성
+*리액트 싱글 페이지 앱 my-app 생성  
   npx create-react-app my-app  
   cd my-app  
   npm start  
