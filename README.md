@@ -29,3 +29,17 @@ crossorigin 속성이 필요한 이유
 - Experimental 채널  
   실험용 API 및 stable 배포에서는 사용할 수 없는 기능이 포함  
   main branch를 추적하지만, 추가 기능 플래그
+
+
+## 주요 개념
+
+### 1. Hello World
+[Hello World 테스트 코드](test\02hello.html)
+
+### 2. JSX 소개
+JSX란
+- JavaScript를 확장한 문법
+- JSX는 React “엘리먼트(element)” 를 생성
+- 별도의 파일에 마크업과 로직을 넣어 기술을 인위적으로 분리하는 대신, 둘 다 포함하는 “컴포넌트”라고 부르는 느슨하게 연결된 유닛으로 관심사를 분리
+- JavaScript 코드 안에서 UI 관련 작업을 할 때 시각적으로 더 도움
+[개념 정리 및 테스트 코드](test\03test.html)
