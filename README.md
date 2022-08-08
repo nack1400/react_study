@@ -47,3 +47,19 @@ JSX란
 ### 3. 엘리먼트 렌더링
 - 브라우저 DOM 엘리먼트와 달리 React 엘리먼트는 일반 객체 그러므로 쉽게 생성 가능
 - [렌더링 방법 및 엘리먼트 업데이트 테스트 코드](test\04elemnet_render.html)
+
+### 4. Component와 Props
+함수 컴포넌트와 클래스 컴포넌트  
+- “props” (props는 속성을 나타내는 데이터입니다) 객체 인자를 받은 후 React 엘리먼트를 반환
+- 이러한 컴포넌트는 JavaScript 함수이기 때문에 말 그대로 “함수 컴포넌트”라고 호칭
+#####
+- 컴포넌트 렌더링  
+1. &lt;Welcome name="Sara" /> 엘리먼트로 ReactDOM.render()를 호출합니다.
+2. React는 {name: 'Sara'}를 props로 하여 Welcome 컴포넌트를 호출합니다.
+3. Welcome 컴포넌트는 결과적으로 &lt;h1&gt;Hello, Sara&lt;h1&gt; 엘리먼트를 반환합니다.
+4. React DOM은 &lt;h1&gt;Hello, Sara&lt;h1&gt; 엘리먼트와 일치하도록 DOM을 효율적으로 업데이트합니다.
+5. 주의 : 컴포넌트의 이름은 항상 대문자로 시작, React는 소문자로 시작하는 컴포넌트를 DOM 태그로 처리
+
+- 컴포넌트 합성
+- 컴포넌트 추출
+- [컴포넌트 테스트 코드](test\05component_props.html)
