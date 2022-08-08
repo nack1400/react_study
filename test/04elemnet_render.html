@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function tick() {
+        // 불변객체, 생성 후 dom에 전달
+        const element = (
+          <div>
+            <h1>Hello, world!</h1>
+            <h2>It is {new Date().toLocaleTimeString()}.</h2>
+          </div>
+        );
+        // react 엘리먼트를 dom 노드에 렌더링
+        ReactDOM.render(element, document.getElementById("root"));
+      }
+      // 처음에 한번 실행
+      tick();
+      // 콜백 함수를 이용하여 초마다 다시 호출
+      // 다시 호출하지 않으면 엘리먼트는 불변객체이므로 변하지 않음
+      setInterval(tick, 1000);
+    </script>
+  </body>
+
+  <script
+    src="https://unpkg.com/react@18/umd/react.development.js"
+    crossorigin
+  ></script>
+  <script
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    crossorigin
+  ></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</html>
