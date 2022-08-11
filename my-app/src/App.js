@@ -1,10 +1,12 @@
 import "./App.css";
+import Form from "./Form.js";
 
 function App() {
   return (
     <div>
-      <h1>Hello, world!</h1>
-      <h2>It is {new Date().toLocaleTimeString()}.</h2>
+      <h1>이벤트 처리하기</h1>
+      <Form />
+      <hr></hr>
     </div>
   );
 }
