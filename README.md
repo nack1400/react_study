@@ -163,3 +163,12 @@ class LoggingButton extends React.Component {
 <button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
 ```
 - [테스트 코드](my-app\src\index.js)
+
+### 7. 조건부 렌더링
+- React에서 조건부 렌더링은 JavaScript에서의 조건 처리와 같이 동작
+- [로그인 상태](my-app\src\07conditional_rendering.js)
+- 엘리먼트를 저장하기 위해 변수를 사용할 수 있다. 출력의 다른 부분은 변하지 않은 채로 컴포넌트의 일부를 조건부로 렌더링
+- [조건 연산자](my-app\src\07mailbox.js)
+- 가끔 다른 컴포넌트에 의해 렌더링될 때 컴포넌트 자체를 숨기고 싶을 때가 있다. 이때는 렌더링 결과를 출력하는 대신 null을 반환하면 해결
+- [컴포넌트 조건에 따라 숨기기](my-app\src\07warning_banner.js)
+
