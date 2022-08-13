@@ -172,3 +172,7 @@ class LoggingButton extends React.Component {
 - 가끔 다른 컴포넌트에 의해 렌더링될 때 컴포넌트 자체를 숨기고 싶을 때가 있다. 이때는 렌더링 결과를 출력하는 대신 null을 반환하면 해결
 - [컴포넌트 조건에 따라 숨기기](my-app\src\07warning_banner.js)
 
+
+### 8. 리스트와 Key
+- 기본 리스트 컴포넌트
+- [리스트](my-app\src\08list.js)
