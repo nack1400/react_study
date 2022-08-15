@@ -3,6 +3,7 @@ import LoginControl from "./07conditional_rendering";
 import Mailbox from "./07mailbox";
 import Page from "./07warning_banner";
 import NumberList from "./08list";
+import NumberList2 from "./08key";
 
 function App() {
   const messages = ['React', 'Re: React', 'Re:Re: React'];
@@ -17,6 +18,7 @@ function App() {
       <Mailbox unreadMessages={messages} />
       <Page />
       <NumberList numbers={numbers} />
+      <NumberList2 numbers={numbers} />
       <hr/>
     </div>
   );
