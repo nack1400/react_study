@@ -4,6 +4,9 @@ import Mailbox from "./07mailbox";
 import Page from "./07warning_banner";
 import NumberList from "./08list";
 import NumberList2 from "./08key";
+import NameForm from "./09form.js"
+import FlavorForm from "./09form_select";
+import Reservation from "./09form_multiple_input";
 
 function App() {
   const messages = ['React', 'Re: React', 'Re:Re: React'];
@@ -17,8 +20,15 @@ function App() {
       <LoginControl />
       <Mailbox unreadMessages={messages} />
       <Page />
+      <hr/>
+      <h1>8. 리스트와 key</h1>
       <NumberList numbers={numbers} />
       <NumberList2 numbers={numbers} />
+      <hr/>
+      <h1>9. 폼</h1>
+      <NameForm />
+      <FlavorForm />
+      <Reservation />
       <hr/>
     </div>
   );
