@@ -8,6 +8,7 @@ import NameForm from "./09form.js"
 import FlavorForm from "./09form_select";
 import Reservation from "./09form_multiple_input";
 import Calculator from "./10pulling_up_state";
+import SignUpDialog from "./11composition_inheritance";
 
 function App() {
   const messages = ['React', 'Re: React', 'Re:Re: React'];
@@ -33,6 +34,9 @@ function App() {
       <hr/>
       <h1>10. State 끌어올리기</h1>
       <Calculator />
+      <hr />
+      <h1>11. 합성 vs 상속</h1>
+      <SignUpDialog />
       <hr />
     </div>
   );

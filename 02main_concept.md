@@ -224,3 +224,9 @@ setTimeout(function() {
 6. React는 Calculator가 전달한 새 props와 함께 각 TemperatureInput 컴포넌트의 render 메서드를 호출합니다. 그러면서 UI가 어떻게 보여야 할지를 파악합니다.
 7. React는 BoilingVerdict 컴포넌트에게 섭씨온도를 props로 건네면서 그 컴포넌트의 render 메서드를 호출합니다.
 8. React DOM은 물의 끓는 여부와 올바른 입력값을 일치시키는 작업과 함께 DOM을 갱신합니다. 값을 변경한 입력 필드는 현재 입력값을 그대로 받고, 다른 입력 필드는 변환된 온도 값으로 갱신됩니다.
+
+### 11. 합성 (Composition) vs 상속 (Inheritance)
+- React는 합성 모델을 가지고 있으면 상속 대신 합성을 사용하여 코드를 재사용한다.
+- 상속의 문제를 React에서는 합성으로 해결한다
+- 컴포넌트를 재사용하려면 별도의 JavaScript 모듈로 분리하는 것을 추천
+- [컴포넌트에서 다른 컴포넌트를 담기, 특수화 테스트 코드](my-app\src\11composition_inheritance.js)
