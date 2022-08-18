@@ -230,3 +230,34 @@ setTimeout(function() {
 - 상속의 문제를 React에서는 합성으로 해결한다
 - 컴포넌트를 재사용하려면 별도의 JavaScript 모듈로 분리하는 것을 추천
 - [컴포넌트에서 다른 컴포넌트를 담기, 특수화 테스트 코드](my-app\src\11composition_inheritance.js)
+
+### 12. React로 생각하기
+1. UI를 컴포넌트 계층 구조로 나누기
+단일 책임 원칙을 지켜서 하나의 컴포넌트는 한가지 일을 하도록, 보통은 JSON 데이터를 유저에게 보여주기 때문에 데이터 모델이 잘 만들어졌다면 UI(컴포넌트 구조)가 잘 연결될 것
+![](thinking-in-react-components.png)
+- FilterableProductTable(노란색): 예시 전체를 포괄합니다.
+- SearchBar(파란색): 모든 유저의 입력(user input) 을 받습니다.
+- ProductTable(연두색): 유저의 입력(user input)을 기반으로 데이터 콜렉션(data collection)을 필터링 해서 보여줍니다.
+- ProductCategoryRow(하늘색): 각 카테고리(category)의 헤더를 보여줍니다.
+- ProductRow(빨강색): 각각의 제품(product)에 해당하는 행을 보여줍니다.
+
+2. React로 정적인 버전 만들기
+[테스트 코드](my-app\src\12thinking_in_react.js)
+
+3. UI state에 대한 최소한의 (하지만 완전한) 표현 찾아내기
+중복 배제의 원칙
+- 최소한의 state 찾기, 필요에 따라 그때그때 계산하도록 설계, state를 별도로 만들지 않기
+- 부모로부터 props를 통해 전달됩니까? 그러면 확실히 state가 아닙니다.
+- 시간이 지나도 변하지 않나요? 그러면 확실히 state가 아닙니다.
+- 컴포넌트 안의 다른 state나 props를 가지고 계산 가능한가요? 그렇다면 state가 아닙니다.
+
+4. State가 어디에 있어야 할 지 찾기
+- 어떤 컴포넌트가 어떤 state를 가지는지
+- state를 기반으로 렌더링하는 모든 컴포넌트를 찾으세요.
+- 공통 소유 컴포넌트 (common owner component)를 찾으세요. (계층 구조 내에서 특정 state가 있어야 하는 모든 컴포넌트들의 상위에 있는 하나의 컴포넌트).
+- 공통 혹은 더 상위에 있는 컴포넌트가 state를 가져야 합니다.
+- state를 소유할 적절한 컴포넌트를 찾지 못하였다면, state를 소유하는 컴포넌트를 하나 만들어서 공통 소유 컴포넌트의 상위 계층에 추가하세요.
+
+5. 역방향 데이터 흐름 추가하기
+- 아래로 흐르는 계층구조에서 반대 방향도
+- state가 업데이트 되도록 호출
