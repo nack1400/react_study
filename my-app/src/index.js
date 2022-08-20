@@ -61,7 +61,7 @@ root.render(
 
 // 5. State와 생명주기
 
-// // Clock 구현
+// Clock 구현
 // function tick() {
 //   root.render(
 //     <React.StrictMode>
