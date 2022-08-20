@@ -72,6 +72,7 @@ constructor(props) {
     };
   }
 componentDidMount() {
+    // 각자 setState에서 독립적으로 업데이트를 하고 병합하는 방식
     fetchPosts().then(response => {
       this.setState({
         // setState()호출로 독립적으로 업데이트 가능
