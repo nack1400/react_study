@@ -24,12 +24,17 @@ JSX란
 1. &lt;Welcome name="Sara" /> 엘리먼트로 ReactDOM.render()를 호출합니다.
 2. React는 {name: 'Sara'}를 props로 하여 Welcome 컴포넌트를 호출합니다.
 3. Welcome 컴포넌트는 결과적으로 &lt;h1&gt;Hello, Sara&lt;h1&gt; 엘리먼트를 반환합니다.
-4. React DOM은 &lt;h1&gt;Hello, Sara&lt;h1&gt; 엘리먼트와 일치하도록 DOM을 효율적으로 업데이트합니다.
-5. 주의 : 컴포넌트의 이름은 항상 대문자로 시작, React는 소문자로 시작하는 컴포넌트를 DOM 태그로 처리
+4. React DOM은 &lt;h1&gt;Hello, Sara&lt;h1&gt; 엘리먼트와 일치하도록 DOM을 효율적으로 업데이트합니다.  
+
+주의 : 컴포넌트의 이름은 항상 대문자로 시작, React는 소문자로 시작하는 컴포넌트를 DOM 태그로 처리
 
 - 컴포넌트 합성
+컴포넌트 안에 컴포넌트를 여러 번 렌더링하는 컴포넌트를 만들 수 있음
 - 컴포넌트 추출
+중첩된 구성요소를 컴포넌트로 추출
 - [컴포넌트 테스트 코드](test\05component_props.html)
+- props는 읽기 전용, 수정해서는 안된다
+- 모든 컴포넌트는 입력된 값을 변경하지 않는 순수함수처럼 동작해야한다. -> 그래서 나오는 개념이 state
 
 ### 5. State와 생명주기
 Clock 구현
