@@ -117,13 +117,17 @@ function Form() {
 ```javascript
 class LoggingButton extends React.Component {
   // 이 문법은 `this`가 handleClick 내에서 바인딩되도록 합니다.
+  // 클래스 메서드는 기본적으로 바인딩 X, 실제 호출될 때 this는 undefined가 된다.
   // 주의: 이 문법은 *실험적인* 문법입니다.
+  
   handleClick = () => {
     console.log('this is:', this);
   }
 
   render() {
     return (
+      // 이 문법의 문제점은 렌더링될 때마다 다른 콜백(새로 만들어서)이 생성되는 것, 콜백이 하위 컴포넌트에 props로서 전달될 수는 있으나 성능 이슈로 생성자 안에서 바인드하거나 클래스 필드 문법 사용
+      // 화살표 문법 : () => this.handleClick() 사용 X
       <button onClick={this.handleClick}>
         Click me
       </button>
