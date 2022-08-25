@@ -102,7 +102,7 @@ componentDidMount() {
 ```javascript
 function Form() {
   function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault(); // 기본 동작을 방지하기 위해, 이벤트가 발생했어도 새로 실행되지 않게 하기 위해
     console.log('You clicked submit.');
   }
 
