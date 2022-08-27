@@ -115,6 +115,12 @@ function Form() {
 ```
 - 클래스 필드를 사용하여 바인딩도 가능
 ```javascript
+/*
+  바인드란?
+  bind - this를 가르키는 context를 변경하여 바로 실행시켜주는 메소드
+  메소드의 재사용과 공유, 중복을 방지
+  다른 컴포넌트로 pass할 메소드를 binding
+*/
 class LoggingButton extends React.Component {
   // 이 문법은 `this`가 handleClick 내에서 바인딩되도록 합니다.
   // 클래스 메서드는 기본적으로 바인딩 X, 실제 호출될 때 this는 undefined가 된다.
