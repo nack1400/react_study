@@ -26,6 +26,8 @@ class LoginControl extends React.Component {
       button = <LoginButton onClick={this.handleLoginClick} />;
     }
 
+    // 변경된 부분만 변경
+    // 그렇다면 변경된 부분을 감지하여 button과 Greeting 컴포넌트가 따로 변경되는건가?
     return (
       <div>
         <Greeting isLoggedIn={isLoggedIn} />
