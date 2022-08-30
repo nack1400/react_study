@@ -15,7 +15,7 @@ class NameForm extends React.Component {
 
   handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
+    event.preventDefault(); // 전체가 새로고침 되지 않도록
   }
 
   render() {

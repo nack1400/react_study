@@ -3,6 +3,7 @@ import React from "react";
 class FlavorForm extends React.Component {
   constructor(props) {
     super(props);
+    // value selected와 같은 사용처, 초기값
     this.state = {value: 'coconut'};
 
     this.handleChange = this.handleChange.bind(this);
