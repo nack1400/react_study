@@ -162,8 +162,8 @@ class LoggingButton extends React.Component {
 - [리스트](my-app\src\08list.js)
 - key사용 및 컴포넌트 추출하기
 - [Key](my-app\src\08key.js)
-- key는 형제 사이에서만 고유한 값이어야 한다.
-- Key는 배열 안에서 형제 사이에서 고유해야 하고 전체 범위에서 고유할 필요는 없다.
+- key는 형제 사이에서만 고유한 값이어야 한다
+- Key는 배열 안에서 형제 사이에서 고유해야 하고 전체 범위에서 고유할 필요는 없다
 ```javascript
 function Blog(props) {
   const sidebar = (
