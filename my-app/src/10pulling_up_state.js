@@ -31,22 +31,28 @@ const scaleNames = {
   f: "Fahrenheit",
 };
 
+// Calculator에서 빼내온 컴포넌트
 class TemperatureInput extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     // this.state = { temperature: "" };
+    // 개별적으로 가지고 있던 state를 Calculator로 끌어올리기
   }
 
   handleChange(e) {
     // 이전 : this.setState({ temperature: e.target.value });
+    // 부모로 부터 전달된 props로 동기화
+    // 값을 갱신하기 위해 props의 메소드를 호출
     this.props.onTemperatureChange(e.target.value);
   }
 
   render() {
     // 이전 : const temperature = this.state.temperature;
-    // 값 동기화
-    const temperature = this.props.temperature; //props는 읽기 전용
+    // 부모로 부터 전달된 props로 값 동기화
+    // 이제 TemperatureInput은 값을 변경할 수 없음
+    // 갱신하고 싶다면 this.props.onTemperatureChange를 호출
+    const temperature = this.props.temperature; // props는 읽기 전용
     const scale = this.props.scale;
     return (
       <fieldset>
@@ -104,7 +110,7 @@ function toCelsius(fahrenheit) {
 function toFahrenheit(celsius) {
   return (celsius * 9 / 5) + 32;
 }
-
+// 잘못된 값을 걸러주고 소수점 세번째 자리에 반올림
 function tryConvert(temperature, convert) {
   const input = parseFloat(temperature);
   if (Number.isNaN(input)) {
