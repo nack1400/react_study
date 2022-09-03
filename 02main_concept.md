@@ -251,7 +251,7 @@ setTimeout(function() {
 
 ### 12. React로 생각하기
 1. UI를 컴포넌트 계층 구조로 나누기
-단일 책임 원칙을 지켜서 하나의 컴포넌트는 한가지 일을 하도록, 보통은 JSON 데이터를 유저에게 보여주기 때문에 데이터 모델이 잘 만들어졌다면 UI(컴포넌트 구조)가 잘 연결될 것  
+단일 책임 원칙을 지켜서 하나의 컴포넌트는 한가지 일을 하도록(캡슐화), 보통은 JSON 데이터를 유저에게 보여주기 때문에 데이터 모델이 잘 만들어졌다면 UI(컴포넌트 구조)가 잘 연결될 것  
 
 ![](thinking-in-react-components.png)
 - FilterableProductTable(노란색): 예시 전체를 포괄합니다.
@@ -262,6 +262,10 @@ setTimeout(function() {
 
 2. React로 정적인 버전 만들기
 [테스트 코드](my-app\src\12thinking_in_react.js)
+
+Props vs State
+- props는 부모 컨포넌트가 자식에게 전달하는 데이터, 읽기전용
+- state는 자신이 들고 있는 값, 쓰기 가능, 외부에 공개하지 않고 컴포넌트가 스스로 관리
 
 3. UI state에 대한 최소한의 (하지만 완전한) 표현 찾아내기
 중복 배제의 원칙
