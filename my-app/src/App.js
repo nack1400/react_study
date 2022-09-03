@@ -8,7 +8,7 @@ import NameForm from "./09form.js";
 import FlavorForm from "./09form_select";
 import Reservation from "./09form_multiple_input";
 import Calculator from "./10pulling_up_state";
-import SignUpDialog from "./11composition_inheritance";
+import WelcomeDialog from "./11composition_inheritance";
 import ProductCategoryRow from "./12thinking_in_react";
 
 function App() {
@@ -76,7 +76,7 @@ function App() {
       <Calculator />
       <hr />
       <h1>11. 합성 vs 상속</h1>
-      <SignUpDialog />
+      <WelcomeDialog />
       <hr />
       <h1>12. React로 생각하기</h1>
       <ProductCategoryRow products={PRODUCTS} />
