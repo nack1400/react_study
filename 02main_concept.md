@@ -251,7 +251,8 @@ setTimeout(function() {
 
 ### 12. React로 생각하기
 1. UI를 컴포넌트 계층 구조로 나누기
-단일 책임 원칙을 지켜서 하나의 컴포넌트는 한가지 일을 하도록, 보통은 JSON 데이터를 유저에게 보여주기 때문에 데이터 모델이 잘 만들어졌다면 UI(컴포넌트 구조)가 잘 연결될 것
+단일 책임 원칙을 지켜서 하나의 컴포넌트는 한가지 일을 하도록, 보통은 JSON 데이터를 유저에게 보여주기 때문에 데이터 모델이 잘 만들어졌다면 UI(컴포넌트 구조)가 잘 연결될 것  
+
 ![](thinking-in-react-components.png)
 - FilterableProductTable(노란색): 예시 전체를 포괄합니다.
 - SearchBar(파란색): 모든 유저의 입력(user input) 을 받습니다.
