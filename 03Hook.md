@@ -115,4 +115,50 @@ Hook 사용 규칙
 - 최상위에서만 Hook을 호출, 반복문, 조건문, 중첩된 함수 내에서 실행하지 말 것
 - React 함수 컴포넌트 내에서만 Hook을 호출, 일반 Javascript 함수에서는 호출해서는 안됨
 
+### 3. State Hook 사용하기
 
+Hook과 함수 컴포넌트
+```javascript
+const Example = (props) => {
+  // 여기서 Hook을 사용할 수 있습니다!
+  return <div />;
+}
+function Example(props) {
+  // 여기서 Hook을 사용할 수 있습니다!
+  return <div />;
+}
+```
+- 함수 컴포넌트는 state가 없는 컴포넌트
+- 하지만 Hook은 state를 함수 안에서 사용할 수 있게 해준다
+- Hook은 클래스 안에서 동작하지 않는다
+
+state 변수 선언하기
+```javascript
+import React, { useState } from 'react';
+
+function Example() {
+  // 새로운 state 변수를 선언하고, 이것을 count라 부르겠습니다.
+  const [count, setCount] = useState(0);
+```
+- state 변수를 선언, 위에서는 count
+- useState는 클래스 컴포넌트의 this.state와 동일
+
+state 가져오기
+```javascript
+// 클래스 컴포넌트 방식
+<p>You clicked {this.state.count} times</p>
+// 함수 컴포넌트 방식
+<p>You clicked {count} times</p>
+```
+
+state 갱신하기
+```javascript
+// 클래스 컴포넌트 방식
+<button onClick={() => this.setState({ count: this.state.count + 1 })}>
+  Click me
+</button>
+// 함수 컴포넌트 방식
+<button onClick={() => setCount(count + 1)}>
+  Click me
+</button>
+```
