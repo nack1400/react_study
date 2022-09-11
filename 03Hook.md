@@ -1,6 +1,7 @@
 ## Hook
 
 ### 1. Hook 소개
+
 - hook 함수 - [useState 예시](hook\src\index.js)
 
 Hook의 특징
@@ -16,6 +17,7 @@ Hook을 만든 이유
 - React로부터 Class를 제거할 계획은 없다
 - 미래에도 계속 Class 컴포넌트들을 지원할 예정
 - Hook은 존재하는 코드와 함께 나란히 작동
+
 
 ### 2. Hook의 개요
 
@@ -115,6 +117,7 @@ Hook 사용 규칙
 - 최상위에서만 Hook을 호출, 반복문, 조건문, 중첩된 함수 내에서 실행하지 말 것
 - React 함수 컴포넌트 내에서만 Hook을 호출, 일반 Javascript 함수에서는 호출해서는 안됨
 
+
 ### 3. State Hook 사용하기
 
 Hook과 함수 컴포넌트
@@ -162,3 +165,7 @@ state 갱신하기
   Click me
 </button>
 ```
+
+
+### 4. Effect Hook 사용하기
+
