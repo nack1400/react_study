@@ -169,3 +169,151 @@ state 갱신하기
 
 ### 4. Effect Hook 사용하기
 
+- [기본 예시](hook\src\01intro.js)
+- useEffect는 class 생명주기 메서드의 componentDidMount와 componentDidUpdate, componentWillUnmount가 합쳐진 것과 비슷
+- Side-Effect를 처리하기 위해 사용
+- Side-Effect : 함수가 실행되면서 함수 외부에 존재하는 값이나 상태를 변경시키는 등의 행위
+
+정리(Clean-up)를 이용하지 않는 Effects
+```javascript
+// 클래스 생명주기 메서드
+class Example extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+  }
+
+  componentDidMount() {
+    document.title = `You clicked ${this.state.count} times`;
+  }
+  componentDidUpdate() {
+    document.title = `You clicked ${this.state.count} times`;
+  }
+
+  render() {
+    return (
+      <div>
+        <p>You clicked {this.state.count} times</p>
+        <button onClick={() => this.setState({ count: this.state.count + 1 })}>
+          Click me
+        </button>
+      </div>
+    );
+  }
+}
+
+// Hook을 사용한 동일한 예시
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+- useEffect를 컴포넌트 안에서 불러내는 이유 : useEffect를 컴포넌트 내부에 둠으로써 effect를 통해 count state 변수(또는 그 어떤 prop에도)에 접근할 수 있음
+- useEffect는 기본적으로 첫번째 렌더링과 이후의 모든 업데이트에서 수행
+
+정리(clean-up)를 이용하는 Effects
+- 구독(subscription)을 설정해야 하는 경우
+- Clean-up 함수 : Component의 unmount이전 / update직전에 어떠한 작업을 수행하고 싶다면 Clean-up 함수를 반환
+- re-render -> 이전 effect clean-up -> effect
+```javascript
+// 클래스 생명주기 메서드
+class FriendStatus extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isOnline: null };
+    this.handleStatusChange = this.handleStatusChange.bind(this);
+  }
+
+  componentDidMount() {
+    ChatAPI.subscribeToFriendStatus(
+      this.props.friend.id,
+      this.handleStatusChange
+    );
+  }
+  componentWillUnmount() {
+    ChatAPI.unsubscribeFromFriendStatus(
+      this.props.friend.id,
+      this.handleStatusChange
+    );
+  }
+  handleStatusChange(status) {
+    this.setState({
+      isOnline: status.isOnline
+    });
+  }
+
+  render() {
+    if (this.state.isOnline === null) {
+      return 'Loading...';
+    }
+    return this.state.isOnline ? 'Online' : 'Offline';
+  }
+}
+
+// Hook을 사용한 동일한 예시
+import React, { useState, useEffect } from 'react';
+
+function FriendStatus(props) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    // effect 이후에 어떻게 정리(clean-up)할 것인지 표시합니다.
+    return function cleanup() {
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+    };
+  });
+
+  if (isOnline === null) {
+    return 'Loading...';
+  }
+  return isOnline ? 'Online' : 'Offline';
+}
+```
+
+effect를 이용하는 팁
+- 관심사 분리 : Multiple Effect
+```javascript
+function FriendStatusWithCounter(props) {
+  const [count, setCount] = useState(0);
+
+  // 여러개를 만들어서 사용, 코드가 무엇을 하는지에 따라 나눔
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  });
+
+  const [isOnline, setIsOnline] = useState(null);
+  useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
+    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    return () => {
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+    };
+  });
+  // ...
+}
+```
+- effect가 업데이트 시마다 실행 : 버그가 적은 컴포넌트를 만들기 위해
+- useEffect가 기본적으로 업데이트를 다루기 때문에 더는 업데이트를 위한 특별한 코드가 필요 없다
