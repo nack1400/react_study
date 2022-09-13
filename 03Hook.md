@@ -317,3 +317,55 @@ function FriendStatusWithCounter(props) {
 ```
 - effect가 업데이트 시마다 실행 : 버그가 적은 컴포넌트를 만들기 위해
 - useEffect가 기본적으로 업데이트를 다루기 때문에 더는 업데이트를 위한 특별한 코드가 필요 없다
+
+### 5. Hook의 규칙
+1. 최상위(at the Top Level)에서만 Hook을 호출
+  반복문, 조건문 혹은 중첩된 함수 내에서 Hook을 호출 X
+2. 오직 React 함수 내에서 Hook을 호출
+  Hook을 일반적인 JavaScript 함수에서 호출 X
+
+ESLint 플러그인
+- 위의 두 가지 규칙을 강제하는 플러그인
+- npm install eslint-plugin-react-hooks --save-dev
+- 기본적으로 Create React App에 포함되어 있음
+
+3. 한 컴포넌트 내에서 State나 Effect Hook을 여러 개 사용할 수 있다
+  그렇다면 React는 어떻게 특정 state가 어떤 useState 호출에 해당하는지 알 수 있을까? React가 Hook이 호출되는 순서에 의존
+```javascript
+function Form() {
+// 1. name이라는 state 변수를 사용하세요.
+const [name, setName] = useState('Mary');
+
+// 2. Effect를 사용해 폼 데이터를 저장하세요.
+useEffect(function persistForm() {
+  localStorage.setItem('formData', name);
+});
+
+// 3. surname이라는 state 변수를 사용하세요.
+const [surname, setSurname] = useState('Poppins');
+
+// 4. Effect를 사용해서 제목을 업데이트합니다.
+useEffect(function updateTitle() {
+  document.title = name + ' ' + surname;
+});
+
+// ...
+}
+
+// 첫 번째 렌더링
+// ------------
+useState('Mary')           // 1. 'Mary'라는 name state 변수를 선언합니다.
+useEffect(persistForm)     // 2. 폼 데이터를 저장하기 위한 effect를 추가합니다.
+useState('Poppins')        // 3. 'Poppins'라는 surname state 변수를 선언합니다.
+useEffect(updateTitle)     // 4. 제목을 업데이트하기 위한 effect를 추가합니다.
+
+// -------------
+// 두 번째 렌더링
+// -------------
+useState('Mary')           // 1. name state 변수를 읽습니다.(인자는 무시됩니다)
+useEffect(persistForm)     // 2. 폼 데이터를 저장하기 위한 effect가 대체됩니다.
+useState('Poppins')        // 3. surname state 변수를 읽습니다.(인자는 무시됩니다)
+useEffect(updateTitle)     // 4. 제목을 업데이트하기 위한 effect가 대체됩니다.
+
+// ...
+```
