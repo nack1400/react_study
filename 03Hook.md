@@ -369,3 +369,100 @@ useEffect(updateTitle)     // 4. 제목을 업데이트하기 위한 effect가 �
 
 // ...
 ```
+
+### 6. 자신만의 Hook 만들기
+
+기존 Hook
+```javascript
+import React, { useState, useEffect } from 'react';
+
+function FriendStatus(props) {
+  // 비슷한 로직을 복사하여 사용
+  const [isOnline, setIsOnline] = useState(null);
+  useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    return () => {
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+    };
+  });
+
+  if (isOnline === null) {
+    return 'Loading...';
+  }
+  return isOnline ? 'Online' : 'Offline';
+}
+
+import React, { useState, useEffect } from 'react';
+
+function FriendListItem(props) {
+  // 비슷한 로직을 복사하여 사용
+  const [isOnline, setIsOnline] = useState(null);
+  useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    return () => {
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+    };
+  });
+
+  return (
+    <li style={{ color: isOnline ? 'green' : 'black' }}>
+      {props.friend.name}
+    </li>
+  );
+}
+```
+
+사용자 정의 Hook 추출하기
+```javascript
+import { useState, useEffect } from 'react';
+
+// 사용자 정의 Hook - useFriendStatus
+// use로 시작하여 한 눈에 Hook인지 파악
+function useFriendStatus(friendID) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
+    ChatAPI.subscribeToFriendStatus(friendID, handleStatusChange);
+    return () => {
+      ChatAPI.unsubscribeFromFriendStatus(friendID, handleStatusChange);
+    };
+  });
+
+  return isOnline;
+}
+```
+
+사용자 정의 Hook 사용하기
+```javascript
+function FriendStatus(props) {
+  const isOnline = useFriendStatus(props.friend.id);
+
+  if (isOnline === null) {
+    return 'Loading...';
+  }
+  return isOnline ? 'Online' : 'Offline';
+}
+
+function FriendListItem(props) {
+  const isOnline = useFriendStatus(props.friend.id);
+
+  return (
+    <li style={{ color: isOnline ? 'green' : 'black' }}>
+      {props.friend.name}
+    </li>
+  );
+}
+```
+- 사용자 정의 Hook으로 추출하여 위와 동일한 코드 작성
+- use로 시작하는 사용자 정의 Hook
+- 같은 Hook을 사용하는 두 개의 컴포넌트 안의 state와 effect는 완전히 독립적
