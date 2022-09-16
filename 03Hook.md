@@ -467,6 +467,7 @@ function FriendListItem(props) {
 - use로 시작하는 사용자 정의 Hook
 - 같은 Hook을 사용하는 두 개의 컴포넌트 안의 state와 effect는 완전히 독립적
 
+<<<<<<< HEAD
 
 ### 7. Hook API
 
@@ -495,3 +496,6 @@ Library Hooks
 
 - useSyncExternalStore
 - useInsertionEffect
+=======
+### 7. Hook API
+>>>>>>> 7dea2e19717f5b68bf89524b2515a27096081c61
