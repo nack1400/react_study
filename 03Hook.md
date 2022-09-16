@@ -466,3 +466,32 @@ function FriendListItem(props) {
 - 사용자 정의 Hook으로 추출하여 위와 동일한 코드 작성
 - use로 시작하는 사용자 정의 Hook
 - 같은 Hook을 사용하는 두 개의 컴포넌트 안의 state와 effect는 완전히 독립적
+
+
+### 7. Hook API
+
+[설명 링크](https://ko.reactjs.org/docs/hooks-reference.html)
+
+기본 Hook
+
+- useState
+- useEffect
+- useContext
+
+추가 Hooks
+
+- useReducer
+- useCallback
+- useMemo
+- useRef
+- useImperativeHandle
+- useLayoutEffect
+- useDebugValue
+- useDeferredValue
+- useTransition
+- useId
+
+Library Hooks
+
+- useSyncExternalStore
+- useInsertionEffect
