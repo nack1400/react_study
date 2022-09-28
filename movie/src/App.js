@@ -18,7 +18,7 @@ function App() {
   console.log(toDos);
   return (
     <div>
-      <h1>My To dos ({toDos.length})</h1> 
+      <h1>My To dos ({toDos.length})</h1>
       <form onSubmit={onSubmit}>
         <input
           value={toDo}
@@ -28,6 +28,10 @@ function App() {
         />
         <button>Add To Do</button>
       </form>
+      <hr />
+      {toDos.map((item, index) => (
+        <li key={index}>{item}</li>
+      ))}
     </div>
   );
 
