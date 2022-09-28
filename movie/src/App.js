@@ -3,39 +3,75 @@
 import { useEffect, useState } from "react";
 
 function App() {
-  const [toDo, setToDo] = useState("");
-  const [toDos, setToDos] = useState([]);
-  const onChange = (event) => setToDo(event.target.value);
-  const onSubmit = (event) => {
-    event.preventDefault();
-    if(toDo === ""){
-      return;
-    }
-    setToDo(""); // 아무것도 없으면 리턴, submit하면 텍스트 초기화
-    // 기존의 배열 앞에 새로운 값을 넣은 새로운 배열을 입력 
-    setToDos((currentArray) => [toDo, ...currentArray]);
-  };
-  console.log(toDos);
+  const [loading, setLoading] = useState(true);
+  const [movies, setMovies] = useState([]);
+  const getMovies = async() => {
+    const json = await (
+      await fetch(
+        "https://yts.mx/api/v2/list_movies.json?minimum_rating=8.5&sort_by=year"
+      )
+    ).json();
+    setMovies(json.data.movies);
+    setLoading(false);
+  }
+  useEffect(() => {
+    getMovies();
+  }, []);
+  console.log(movies);
   return (
     <div>
-      <h1>My To dos ({toDos.length})</h1>
-      <form onSubmit={onSubmit}>
-        <input
-          value={toDo}
-          onChange={onChange}
-          type="text"
-          placeholder="Write your to do..."
-        />
-        <button>Add To Do</button>
-      </form>
-      <hr />
-      {toDos.map((item, index) => (
-        <li key={index}>{item}</li>
-      ))}
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <div>
+          {movies.map((movie) => (
+            <div key={movie.id}>
+              <img src={movie.medium_cover_image} />
+              <h2>{movie.title}</h2>
+              <p>{movie.summary}</p>
+              <ul>
+                {movie.genres.map((g) => (
+                  <li key={g}>{g}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 
-
+  // const [toDo, setToDo] = useState("");
+  // const [toDos, setToDos] = useState([]);
+  // const onChange = (event) => setToDo(event.target.value);
+  // const onSubmit = (event) => {
+  //   event.preventDefault();
+  //   if(toDo === ""){
+  //     return;
+  //   }
+  //   setToDo(""); // 아무것도 없으면 리턴, submit하면 텍스트 초기화
+  //   // 기존의 배열 앞에 새로운 값을 넣은 새로운 배열을 입력 
+  //   setToDos((currentArray) => [toDo, ...currentArray]);
+  // };
+  // console.log(toDos);
+  // return (
+  //   <div>
+  //     <h1>My To dos ({toDos.length})</h1>
+  //     <form onSubmit={onSubmit}>
+  //       <input
+  //         value={toDo}
+  //         onChange={onChange}
+  //         type="text"
+  //         placeholder="Write your to do..."
+  //       />
+  //       <button>Add To Do</button>
+  //     </form>
+  //     <hr />
+  //     {toDos.map((item, index) => (
+  //       <li key={index}>{item}</li>
+  //     ))}
+  //   </div>
+  // );
 
   // const [counter, setValue] = useState(0);
   // const [keyword, setKeyword] = useState("")
